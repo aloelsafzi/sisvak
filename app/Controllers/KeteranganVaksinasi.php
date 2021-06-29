@@ -31,9 +31,13 @@ class KeteranganVaksinasi extends BaseController
 
   public function updateStatus()
   {
+    $status = 0;
+    if ($this->requestData->getVar("status")) {
+      $status = 1;
+    }
     $id = $this->requestData->getVar("id");
     $builder = $this->db->table('keterangan_vaksinasi');
-    $builder->set('status_vaksinasi', $this->requestData->getVar("status"));
+    $builder->set('status_vaksinasi', $status);
     $builder->where('id_ket_vaksinasi', $id);
     $builder->update();
     return redirect()->to("/KeteranganVaksinasi");
