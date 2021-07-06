@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="<?= base_url("assets/vendors/bootstrap-icons/bootstrap-icons.css") ?>">
   <link rel="stylesheet" href="<?= base_url("assets/vendors/fontawesome/all.min.css") ?>">
   <link rel="stylesheet" href="<?= base_url("assets/css/app.css") ?>">
-  <link rel="shortcut icon" href="<?= base_url("assets/images/favicon.svg") ?>" type="image/x-icon">
+  <link rel="shortcut icon" href="<?= base_url("assets/favicon.svg") ?>" type="image/x-icon">
 </head>
 
 <body>
@@ -40,72 +40,81 @@
             <div class="col-12 col-lg-9">
               <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
-                  <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="stats-icon purple">
-                            <i class="fas fa-user text-white h3"></i>
+                  <a href="/Warga">
+                    <div class="card">
+                      <div class="card-body px-3 py-4-5">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="stats-icon purple">
+                              <i class="fas fa-user text-white h3"></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-md-8">
-                          <h6 class="text-muted font-semibold">Warga / Penduduk</h6>
-                          <h6 class="font-extrabold mb-0"><?= $countWarga ?></h6>
+                          <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Warga / Penduduk</h6>
+                            <h6 class="font-extrabold mb-0"><?= $countWarga ?></h6>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
-                  <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="stats-icon blue">
-                            <i class="fas fa-hospital text-white h3"></i>
+                  <a href="/TempatVaksinasi">
+                    <div class="card">
+                      <div class="card-body px-3 py-4-5">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="stats-icon blue">
+                              <i class="fas fa-hospital text-white h3"></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-md-8">
-                          <h6 class="text-muted font-semibold">Tempat Vaksinasi</h6>
-                          <h6 class="font-extrabold mb-0"><?= $countTempat ?></h6>
+                          <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Tempat Vaksinasi</h6>
+                            <h6 class="font-extrabold mb-0"><?= $countTempat ?></h6>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
-                  <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="stats-icon green">
-                            <i class="fas fa-syringe text-white h3"></i>
+                  <a href="/KeteranganVaksinasi">
+                    <div class="card">
+                      <div class="card-body px-3 py-4-5">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="stats-icon green">
+                              <i class="fas fa-syringe text-white h3"></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-md-8">
-                          <h6 class="text-muted font-semibold">Sudah divaksin</h6>
-                          <h6 class="font-extrabold mb-0"><?= $countSudahVaksin ?></h6>
+                          <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Sudah divaksin</h6>
+                            <h6 class="font-extrabold mb-0"><?= $countSudahVaksin ?></h6>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
-                  <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                      <div class="row">
-                        <div class="col-md-4">
-                          <div class="stats-icon red">
-                            <i class="fas fa-viruses text-white h3"></i>
+                  <a href="/KeteranganVaksinasi">
+                    <div class="card">
+                      <div class="card-body px-3 py-4-5">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="stats-icon red">
+                              <i class="fas fa-viruses text-white h3"></i>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-md-8">
-                          <h6 class="text-muted font-semibold">Belum divaksin</h6>
-                          <h6 class="font-extrabold mb-0"><?= $countBelumVaksin ?></h6>
+
+                          <div class="col-md-8">
+                            <h6 class="text-muted font-semibold">Belum divaksin</h6>
+                            <h6 class="font-extrabold mb-0"><?= $countBelumVaksin ?></h6>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>

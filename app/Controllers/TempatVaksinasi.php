@@ -29,7 +29,10 @@ class TempatVaksinasi extends BaseController
 
   public function tambahTempat()
   {
-    $data = ["title" => "Tambah Tempat Vaksinasi"];
+    $data = [
+      "title" => "Tambah Tempat Vaksinasi",
+      "flashData" => $this->session->getFlashdata('message')
+    ];
     return view('tambah-tempat', $data);
   }
 
@@ -56,8 +59,14 @@ class TempatVaksinasi extends BaseController
       "kabupaten" => $this->requestData->getVar("kabupaten"),
       "provinsi" => $this->requestData->getVar("provinsi")
     ];
-    $this->tempatVaksinModel->save($data);
-    return redirect()->to("/TempatVaksinasi");
+
+    if ($this->checkTempatVaksinasiIsAvailable()) {
+      $this->session->setFlashdata('message', '<div class="alert alert-danger" role="alert">Tempat Vaksinasi ' . $data["nama_tempat"] . ' Sudah terdaftar</div>');
+      return redirect()->to('/TempatVaksinasi/tambahTempat');
+    } else {
+      $this->tempatVaksinModel->save($data);
+      return redirect()->to("/TempatVaksinasi");
+    }
   }
 
   public function updateTempat()
@@ -82,5 +91,14 @@ class TempatVaksinasi extends BaseController
     $id =  $this->requestData->getVar("id");
     $this->tempatVaksinModel->delete($id);
     return redirect()->to("/TempatVaksinasi");
+  }
+
+  public function checkTempatVaksinasiIsAvailable()
+  {
+    $tempatVaksinVar = $this->requestData->getVar("tempatVaksinasi");
+    $tempatVaksin = $this->tempatVaksinModel->where('nama_tempat', $tempatVaksinVar)->get()->getResultObject();
+    if ($tempatVaksin) {
+      return true;
+    } else return false;
   }
 }

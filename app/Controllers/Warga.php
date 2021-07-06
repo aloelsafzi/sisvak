@@ -37,7 +37,8 @@ class Warga extends BaseController
   {
     $data = [
       "title" => "Tambah Warga / Penduduk",
-      "tempatVaksin" => $this->tempatVaksinModel->findAll()
+      "tempatVaksin" => $this->tempatVaksinModel->findAll(),
+      "flashData" => $this->session->getFlashdata('message')
     ];
     return view('tambah-warga', $data);
   }
@@ -59,10 +60,15 @@ class Warga extends BaseController
   public function saveWarga()
   {
     $data = $this->getRequestDataWargaToCreate();
-    $idInsert = $this->wargaModel->insert($data);
-    $dataKetVaksin = $this->getRequestKetVaksin($idInsert);
-    $this->keteranganVaksinsaiModel->save($dataKetVaksin);
-    return redirect()->to("/Warga");
+    if ($this->checkNikWargaIsAvailable()) {
+      $this->session->setFlashdata('message', '<div class="alert alert-danger" role="alert">Warga dengan NIK ' . $data["nik"] . ' Sudah terdaftar</div>');
+      return redirect()->to('/Warga/tambahWarga');
+    } else {
+      $idInsert = $this->wargaModel->insert($data);
+      $dataKetVaksin = $this->getRequestKetVaksin($idInsert);
+      $this->keteranganVaksinsaiModel->save($dataKetVaksin);
+      return redirect()->to("/Warga");
+    }
   }
 
   public function updateWarga()
@@ -140,5 +146,14 @@ class Warga extends BaseController
       ];
     };
     return $dataKetVaksin;
+  }
+
+  public function checkNikWargaIsAvailable()
+  {
+    $nik = $this->requestData->getVar("nik");
+    $warga = $this->wargaModel->where('nik', $nik)->get()->getResultObject();
+    if ($warga) {
+      return true;
+    } else return false;
   }
 }
